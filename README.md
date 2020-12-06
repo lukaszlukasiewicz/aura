@@ -1,8 +1,10 @@
-# aura
+# Aura konfigurator
+
+Konfigurator donic Aura Concept.
 
 ## CLI Commands
 
-``` bash
+```bash
 # install dependencies
 npm install
 
