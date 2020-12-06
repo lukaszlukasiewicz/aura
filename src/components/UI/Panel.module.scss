@@ -1,0 +1,12 @@
+.Panel {
+  display: block;
+  padding: 0.5em;
+  min-width: 15em;
+  min-height: 20em;
+}
+
+.Panel__title {
+  border-bottom: solid 1px #ddd;
+  margin: 0;
+  padding: 0 0 0.5em 0;
+}
