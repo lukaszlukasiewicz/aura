@@ -8,6 +8,10 @@
   &:hover {
     box-shadow:0 0 0 1px rgba(0,0,0,.1);
   }
+  &.Button--active {
+    border:3px solid #2fd29a;
+    margin:0;
+  }
 }
 
 .Button__icon {
