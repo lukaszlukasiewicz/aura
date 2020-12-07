@@ -2,11 +2,36 @@
   display: block;
   padding: 0.5em;
   min-width: 15em;
-  min-height: 20em;
 }
 
 .Panel__title {
   border-bottom: solid 1px #ddd;
   margin: 0;
   padding: 0 0 0.5em 0;
+  display:grid;
+  align-items: center;
+  cursor: pointer;
+  grid-template-columns: 1fr auto;
+  h2 {
+    margin:0;
+  }
+}
+
+.Panel__toggle {
+  padding:.5em;
+  span {
+    width:.5em;
+    height:.5em;
+    border:solid 1px #ddd;
+    border-width: 0 2px 2px 0;
+    display:block;
+    position:relative;
+    top:.2em;
+    transition:transform .3s;
+    transform:translateY(-.25em) rotate(45deg);
+    &.Panel__toggle--expanded {
+      transform:rotate(-135deg);
+    }
+  }
+  
 }
