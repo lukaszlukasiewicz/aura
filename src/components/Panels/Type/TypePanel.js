@@ -4,6 +4,8 @@ import Button from "components/UI/Button"
 const TypePanel = props => {  
   const {product,update} = props;
 
+  if(product.material.type == "composite" && product.type == "tall") update({type:"standard"});
+
   function setType(type) {
     update({
      type
@@ -11,7 +13,7 @@ const TypePanel = props => {
   }
   return (
     <Panel title="Rozmiar donicy">
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:".5em"}}>
+      <div style={{display:"grid",gridTemplateColumns: product.material.type == "wood" ? "1fr 1fr 1fr" : "1fr 1fr",gap:".5em"}}>
         <Button 
           label="Standard" 
           active={product.type == "standard"} 
@@ -26,13 +28,13 @@ const TypePanel = props => {
           iconUrl="./assets/icons/type_double.svg"
           onClick={()=>setType("double")} 
         />
-        <Button 
+        {product.material.type == "wood" && <Button 
           label="Tall" 
           active={product.type == "tall"} 
           bigIcon={true}
           iconUrl="./assets/icons/type_tall.svg"
           onClick={()=>setType("tall")} 
-        />
+        />}
       </div>
     </Panel>
   )
