@@ -11,7 +11,7 @@ const Panel = props => {
       {props.title && <div className={Styles.Panel__title} onClick={togglePanelContent}>
         <h2>{props.title}</h2>
         <div className={Styles.Panel__toggle} >
-          <span className={expanded && Styles['Panel__toggle--expanded']}></span>
+          <span className={expanded && Styles['Panel__toggle--expanded']} />
         </div>
       </div>}
       {expanded && <div className={Styles.Panel__content}>
