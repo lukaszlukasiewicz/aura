@@ -2,7 +2,8 @@ import {useState} from "preact/hooks";
 import Styles from "./App.module.scss";
 import ProductView from "components/ProductView/ProductView";
 import Sidebar from "components/UI/Sidebar";
-import Panel from "components/UI/Panel"
+import MaterialPanel from "components/Panels/Material/MaterialPanel";
+import TypePanel from "components/Panels/Type/TypePanel";
 const App = () => {
 
 	const [product, setProduct] = useState({
@@ -10,7 +11,10 @@ const App = () => {
 		material: {
 			type: "wood",
 			woodType: "okume",
-			color: "natural"
+			color: {
+				type: "silver",
+				value: "silver",
+			}
 		},
 		corners: {
 			type: "round",
@@ -33,19 +37,8 @@ const App = () => {
 			<ProductView product={product} />
 		</div>
 		<Sidebar>
-			<Panel title="test panel">
-				<div>
-					Panel content;
-					<button onClick={ () => {
-						updateProduct({
-							material : {
-								type: "composite",
-								color: "silver",
-							}
-						})
-					}}>Composite</button>
-				</div>
-			</Panel>
+			<MaterialPanel product={product} update={updateProduct} />
+			<TypePanel product={product} update={updateProduct} />
 		</Sidebar>
 	</div>)
 }
