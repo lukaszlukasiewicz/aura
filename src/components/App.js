@@ -4,6 +4,7 @@ import ProductView from "components/ProductView/ProductView";
 import Sidebar from "components/UI/Sidebar";
 import MaterialPanel from "components/Panels/Material/MaterialPanel";
 import TypePanel from "components/Panels/Type/TypePanel";
+import WoodTypePanel from "components/Panels/WoodType/WoodTypePanel";
 const App = () => {
 
 	const [product, setProduct] = useState({
@@ -12,8 +13,8 @@ const App = () => {
 			type: "wood",
 			woodType: "okume",
 			color: {
-				type: "silver",
-				value: "silver",
+				type: "natural",
+				value: "natural",
 			}
 		},
 		corners: {
@@ -39,6 +40,7 @@ const App = () => {
 		<Sidebar>
 			<MaterialPanel product={product} update={updateProduct} />
 			<TypePanel product={product} update={updateProduct} />
+			{product.material.type == "wood" && <WoodTypePanel product={product} update={updateProduct} />}
 		</Sidebar>
 	</div>)
 }
