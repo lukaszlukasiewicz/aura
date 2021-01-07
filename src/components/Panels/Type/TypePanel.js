@@ -1,39 +1,35 @@
 import Panel from "components/UI/Panel";
-import Button from "components/UI/Button"
+import Button from "components/UI/Button";
+import {useContext} from "preact/hooks"
+import ProductContext from 'contexts/ProductContext';
 
 const TypePanel = props => {  
-  const {product,update} = props;
+  const {product,updateProduct} = useContext(ProductContext);
+  if(product.material.type == "composite" && product.type == "tall") updateProduct({type:"standard"});
 
-  if(product.material.type == "composite" && product.type == "tall") update({type:"standard"});
-
-  function setType(type) {
-    update({
-     type
-    })
-  }
   return (
     <Panel title="Rozmiar donicy">
-      <div style={{display:"grid",gridTemplateColumns: product.material.type == "wood" ? "1fr 1fr 1fr" : "1fr 1fr",gap:".5em"}}>
+      <div style={{display:"grid",gridTemplateColumns: product.material == "wood" ? "1fr 1fr 1fr" : "1fr 1fr",gap:".5em"}}>
         <Button 
           label="Standard" 
           active={product.type == "standard"} 
           bigIcon={true}
           iconUrl="./assets/icons/type_standard.svg"
-          onClick={()=>setType("standard")} 
+          onClick={()=>updateProduct({type:"standard"})} 
         />
         <Button 
           label="Double" 
           active={product.type == "double"} 
           bigIcon={true}
           iconUrl="./assets/icons/type_double.svg"
-          onClick={()=>setType("double")} 
+          onClick={()=>updateProduct({type:"double"})} 
         />
-        {product.material.type == "wood" && <Button 
+        {product.material == "wood" && <Button 
           label="Tall" 
           active={product.type == "tall"} 
           bigIcon={true}
           iconUrl="./assets/icons/type_tall.svg"
-          onClick={()=>setType("tall")} 
+          onClick={()=>updateProduct({type:"tall"})} 
         />}
       </div>
     </Panel>

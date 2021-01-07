@@ -1,22 +1,24 @@
 import Panel from "components/UI/Panel";
 import Button from "components/UI/Button"
-let woodTypeCache = ""
+import {useContext} from "preact/hooks"
+import ProductContext from 'contexts/ProductContext';
 
-const WoodTypePanel = props => {  
-  const {product,update} = props;
-  let woodType = product.material.woodType;
-  if(woodType) {
-    woodTypeCache = product.material.woodType;
-  } else {
-    woodType = woodTypeCache; 
-  }
-  const woodColor = product.material.color.value;
-  const getTextureUrl = woodType => `./assets/textures/${woodColor != 'natural' ? `${woodColor  }_` : ""}${woodType}.jpg`
+let woodCache = ""
+const getTextureUrl = (wood,color) => `./assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`
 
-  const setWoodType = woodType => {
-    update({
-      material : Object.assign(product.material, {woodType})
-    })
+const woodPanel = props => {  
+  
+  const {product,updateProduct} = useContext(ProductContext);
+  if(product.material != "wood") return false;
+  const {wood,color} = product.materialColor
+
+  const setwood = wood => {
+    updateProduct({
+      materialColor : {
+        wood,
+        color, 
+      }
+    });
   }
 
   return (
@@ -25,20 +27,20 @@ const WoodTypePanel = props => {
         <Button 
           label="Okume" 
           round={true}
-          active={woodType == "okume"} 
-          iconUrl={getTextureUrl('okume')}
-          onClick={() => setWoodType('okume')}
+          active={wood == "okume"} 
+          iconUrl={getTextureUrl('okume',color)}
+          onClick={() => setwood('okume')}
         />
         <Button 
           label="Olcha" 
           round={true}
-          active={woodType == "olcha"} 
-          iconUrl={getTextureUrl('olcha')}
-          onClick={() => setWoodType('olcha')}
+          active={wood == "olcha"} 
+          iconUrl={getTextureUrl('olcha',color)}
+          onClick={() => setwood('olcha',)}
         />
       </div>
     </Panel>
   )
 }
 
-export default WoodTypePanel;
+export default woodPanel;
