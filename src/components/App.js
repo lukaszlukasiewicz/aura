@@ -9,6 +9,7 @@ import WoodTypePanel from "components/Panels/WoodType/WoodTypePanel";
 import WoodColorPanel from "components/Panels/WoodColor/WoodColorPanel"
 import CornerTypePanel from "components/Panels/CornerType/CornerTypePanel"
 import CornerColorPanel from "components/Panels/CornerColor/CornerColorPanel"
+import InsertPanel from "components/Panels/Insert/InsertPanel"
 const App = () => {
 
 	return (<ProductContextWrapper><div className={Styles.App} id="app">
@@ -22,6 +23,7 @@ const App = () => {
 			<WoodColorPanel />
 			<CornerTypePanel />
 			<CornerColorPanel/>
+			<InsertPanel />
 		</Sidebar>
 	</div></ProductContextWrapper>)
 }
