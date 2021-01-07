@@ -20,18 +20,11 @@ const getPath = (path,object) => {
 
 const reducer = (product,updatedProps) => {
 
-
-   if(product.material.type == "wood" && updatedProps?.material?.type == "composite") {
-    console.log("dupa1")
-    product.material.woodType = "dupa";
-  }   
-  if(product.material.type == "composite" && updatedProps?.material?.type == "wood") {
-    console.log("dupa2")
-    product.material.woodType = initialProductState.material.woodType;
-  } 
   
+  if(updatedProps.material == "wood" && product.insert == "lamela" ) updatedProps.insert = false;
+  if(updatedProps.material == "composite" && product.insert == "lechuza" ) updatedProps.insert = false;
+
   const newState = Object.assign({},product,updatedProps);
-  //console.log("product",product,updatedProps,newState);
   return newState; 
 }
 
