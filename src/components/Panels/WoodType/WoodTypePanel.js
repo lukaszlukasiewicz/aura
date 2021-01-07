@@ -3,7 +3,6 @@ import Button from "components/UI/Button"
 import {useContext} from "preact/hooks"
 import ProductContext from 'contexts/ProductContext';
 
-let woodCache = ""
 const getTextureUrl = (wood,color) => `./assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`
 
 const woodPanel = props => {  
@@ -22,7 +21,7 @@ const woodPanel = props => {
   }
 
   return (
-    <Panel title="Rozmiar donicy">
+    <Panel title="Rodzaj drewna">
       <div style={{display:"grid",gridTemplateColumns: "1fr 1fr",gap:".5em"}}>
         <Button 
           label="Okume" 
