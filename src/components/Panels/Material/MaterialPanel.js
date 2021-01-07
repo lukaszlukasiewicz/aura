@@ -11,7 +11,7 @@ const MaterialPanel = props => {
     updateProduct({ material });
   }
   return (
-    <Panel title="Wybierz Materiał">
+    <Panel title="Materiał">
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5em"}}>
         <Button label="Drewno" active={product.material == "wood"} onClick={()=>setType("wood")} />
         <Button label="Kompozyt" active={product.material == "composite"} onClick={()=>setType("composite")} />
