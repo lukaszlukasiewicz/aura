@@ -1,3 +1,5 @@
+
+import {ProductContextWrapper} from "contexts/ProductContext";
 import {useState} from "preact/hooks";
 import Styles from "./App.module.scss";
 import ProductView from "components/ProductView/ProductView";
@@ -5,44 +7,20 @@ import Sidebar from "components/UI/Sidebar";
 import MaterialPanel from "components/Panels/Material/MaterialPanel";
 import TypePanel from "components/Panels/Type/TypePanel";
 import WoodTypePanel from "components/Panels/WoodType/WoodTypePanel";
+import WoodColorPanel from "components/Panels/WoodColor/WoodColorPanel"
 const App = () => {
 
-	const [product, setProduct] = useState({
-		type : "standard",
-		material: {
-			type: "wood",
-			woodType: "okume",
-			color: {
-				type: "natural",
-				value: "natural",
-			}
-		},
-		corners: {
-			type: "round",
-			color: {
-				type: "silver",
-				value: "silver",
-			}
-		},
-		insert: false,
-	})
-
-	const updateProduct = updatedProductProps => {
-		const newProductState = Object.assign({},product,updatedProductProps);
-		setProduct(newProductState);
-		return newProductState;
-	}
-
-	return (<div className={Styles.App} id="app">
+	return (<ProductContextWrapper><div className={Styles.App} id="app">
 		<div>
-			<ProductView product={product} />
+			<ProductView />
 		</div>
 		<Sidebar>
-			<MaterialPanel product={product} update={updateProduct} />
-			<TypePanel product={product} update={updateProduct} />
-			{product.material.type == "wood" && <WoodTypePanel product={product} update={updateProduct} />}
+			<MaterialPanel />
+			<TypePanel />
+			<WoodTypePanel />
+			<WoodColorPanel />
 		</Sidebar>
-	</div>)
+	</div></ProductContextWrapper>)
 }
 
 export default App;
