@@ -1,4 +1,5 @@
 import Button from "components/UI/Button";
+import Styles from "./RalPalette.module.scss"
 const ral = {
   "RAL 1000":"#cdba88",
   "RAL 1001":"#d0b084",
@@ -215,15 +216,22 @@ const ral = {
   "RAL 9023":"#797b7a"
   }
 
+const isDark = hexColor => {
+  hexColor = hexColor.replace('#','');
+  const rgb = hexColor.match(/.{2}/g).map(value => parseInt(value,16));
+  return rgb.reduce((sum,val) => sum+val, 0)/3 < 125
+}
 
 const RalPalette = (props = {}) => {
   const buttons = Object.entries(ral).map( ralColor => {
     const [ral,color] = ralColor; 
-    return <Button label={ral.replace("RAL ","")} onClick={e => props.onClick(ral)} style={{backgroundColor:color }} />
+    const isActive = ral == props.selected;
+    const textColor = isDark(color) ? "#fff" : "#000";
+    return <Button className={isActive?Styles.RalButton__active:""} label={ral.replace("RAL ","")} active={isActive} onClick={e => props.onClick(ral)} style={{backgroundColor:color,color:textColor }} />
   })
 
   return (
-    <div style={{fontSize:".8em",display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:".5em",maxHeight:"15em",overflow:"auto"}}>
+    <div style={{fontSize:".8em",display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:".5em",padding:"5px", margin:"0 -5px",maxHeight:"15em",overflow:"auto"}}>
       {buttons}
     </div>
   );
