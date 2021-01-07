@@ -14,21 +14,21 @@ const TypePanel = props => {
           label="Standard" 
           active={product.type == "standard"} 
           bigIcon={true}
-          iconUrl="./assets/icons/type_standard.svg"
+          iconUrl={`${window.auraConfiguratorUrl}/assets/icons/type_standard.svg`}
           onClick={()=>updateProduct({type:"standard"})} 
         />
         <Button 
           label="Double" 
           active={product.type == "double"} 
           bigIcon={true}
-          iconUrl="./assets/icons/type_double.svg"
+          iconUrl={`${window.auraConfiguratorUrl}/assets/icons/type_double.svg`}
           onClick={()=>updateProduct({type:"double"})} 
         />
         {product.material == "wood" && <Button 
           label="Tall" 
           active={product.type == "tall"} 
           bigIcon={true}
-          iconUrl="./assets/icons/type_tall.svg"
+          iconUrl={`${window.auraConfiguratorUrl}/assets/icons/type_tall.svg`}
           onClick={()=>updateProduct({type:"tall"})} 
         />}
       </div>

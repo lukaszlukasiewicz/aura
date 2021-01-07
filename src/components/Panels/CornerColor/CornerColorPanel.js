@@ -5,14 +5,14 @@ import {useContext, useState} from "preact/hooks"
 import ProductContext from 'contexts/ProductContext';
 
 let cachedRalColor = "RAL 1000";
-const ralIcon = "./assets/textures/ral.jpg";
+const ralIcon = `${window.auraConfiguratorUrl}/assets/textures/ral.jpg`;
 
 const CornerColorPanel = (props = {}) =>{
   const {product,updateProduct} = useContext(ProductContext);  
   if(product.material != "wood") return false;
 
   const {color,wood} = product.materialColor;
-  const woodIcon = `./assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
+  const woodIcon = `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
   const ralColor = product.cornerColor.includes("RAL") ? product.cornerColor : cachedRalColor;
   console.log(product.cornerColor.includes('RAL'));
   const [ral, setRal] = useState(product.cornerColor.includes('RAL'));

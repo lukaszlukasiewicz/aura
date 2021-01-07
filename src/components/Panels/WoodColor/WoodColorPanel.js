@@ -4,7 +4,7 @@ import Panel from "components/UI/Panel";
 import Button from "components/UI/Button"
 
 
-const getTextureUrl = (wood,color) => `./assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
+const getTextureUrl = (wood,color) => `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
 
 const WoodColorButton = props => {
 

@@ -3,7 +3,7 @@ import Button from "components/UI/Button"
 import {useContext} from "preact/hooks"
 import ProductContext from 'contexts/ProductContext';
 
-const getTextureUrl = (wood,color) => `./assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`
+const getTextureUrl = (wood,color) => `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`
 
 const woodPanel = props => {  
   

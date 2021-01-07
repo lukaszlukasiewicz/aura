@@ -1,6 +1,8 @@
 const { createContext } = require("preact");
 import {useReducer} from "preact/hooks";
 
+window.auraConfiguratorUrl  = document.currentScript.src.replace("auraConfigurator.js","");
+
 const cache = {
   woodColor:  {
     wood: "okume",
