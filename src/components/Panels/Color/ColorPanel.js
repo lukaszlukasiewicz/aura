@@ -9,7 +9,9 @@ const ColorPanel = props => {
   if (product.material == "wood") return false;
   return (
     <Panel title="Kolor">
-      <RalPalette selected={product.materialColor} onClick={ color => updateProduct({materialColor:color})}/>
+      <div>
+        <RalPalette selected={product.materialColor} onClick={ color => updateProduct({materialColor:color})}/>
+      </div>
     </Panel>
   )
 }
