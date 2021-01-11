@@ -231,9 +231,12 @@ const RalPalette = (props = {}) => {
   })
 
   return (
-    <div style={{fontSize:".8em",display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:".5em",padding:"5px", margin:"0 -5px",maxHeight:"15em",overflow:"auto"}}>
-      {buttons}
+    <div style={{fontSize:".8em",padding:"5px", margin:"0 0 0 -5px",maxHeight:"15em",overflowX:"auto"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat( auto-fit, minmax(4.5em, 1fr) )",gap:".5em"}}>
+        {buttons}
+      </div>
     </div>
+
   );
 }
 
