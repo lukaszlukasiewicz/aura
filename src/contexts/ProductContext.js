@@ -10,6 +10,7 @@ const cache = {
   },
   composieteColor: "RAL 1000",
   cornerColor: "silver",
+  conrenrType: "round",
 }
 
 const initialProductState = {
@@ -39,8 +40,13 @@ const reducer = (product,updatedProps) => {
   if(updatedProps.material == "composite") delete product.cornerColor; 
   if(updatedProps.material == "wood") product.cornerColor = cache.cornerColor;
 
+  if(updatedProps.material == "composite") delete product.cornerType; 
+  if(updatedProps.material == "wood") product.cornerType = cache.cornerType;
+
   if(updatedProps.material == "wood") product.materialColor = cache.woodColor;
   if(updatedProps.material == "composite") product.materialColor = cache.composieteColor;
+
+
 
   const newState = Object.assign({},product,updatedProps);
   return newState; 
