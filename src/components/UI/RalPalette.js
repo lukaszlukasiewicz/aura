@@ -1,6 +1,6 @@
 import Button from "components/UI/Button";
 import Styles from "./RalPalette.module.scss"
-const ral = {
+export const ral = {
   "RAL 1000":"#cdba88",
   "RAL 1001":"#d0b084",
   "RAL 1002":"#d2aa6d",
