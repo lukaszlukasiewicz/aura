@@ -34,8 +34,10 @@ const reducer = (product,updatedProps) => {
   if(product.material == "composite" && updatedProps.materialColor) cache.composieteColor = updatedProps.materialColor;
   if(product.material == "wood" && updatedProps.cornerColor) cache.cornerColor = updatedProps.cornerColor;
   
-  if(updatedProps.material == "wood" && product.insert == "lamela" ) updatedProps.insert = false;
-  if(updatedProps.material == "composite" && product.insert == "lechuza" ) updatedProps.insert = false;
+  if(updatedProps.material == "wood" && product.insert == "lechuza" ) updatedProps.insert = false;
+  if(updatedProps.material == "composite" && product.insert == "lamela" ) updatedProps.insert = false;
+
+  if(updatedProps.material == "composite" && product.type == "tall")  updatedProps.type = "standard"
 
   if(updatedProps.material == "composite") delete product.cornerColor; 
   if(updatedProps.material == "wood") product.cornerColor = cache.cornerColor;
