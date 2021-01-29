@@ -5,7 +5,10 @@ const Button = props => {
   if(active) buttonProps.className += ` ${Styles["Button--active"]}`;
   return (
     <button {...buttonProps}>
-      {(iconUrl || iconColor ) && <span className={`${Styles.Button__icon} ${bigIcon && Styles['Button__icon--big']} ${round && Styles['Button__icon--round']}`} style={{backgroundImage:`url(${iconUrl})`,backgroundColor:iconColor}} />}
+      {(iconUrl || iconColor ) && <span className={`${Styles.Button__icon} ${bigIcon && Styles['Button__icon--big']} ${round && Styles['Button__icon--round']}`} style={{
+        backgroundImage:iconUrl ? `url(${iconUrl})`:'none',
+        backgroundColor:iconColor
+      }} />}
       {label}
     </button>
   )
