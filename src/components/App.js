@@ -14,7 +14,7 @@ import ColorPanel from "components/Panels/Color/ColorPanel"
 const App = () => {
 
 	return (<ProductContextWrapper><div className={Styles.App} id="app">
-		<div>
+		<div className={Styles.viewWraprer}>
 			<ProductView />
 		</div>
 		<Sidebar>
