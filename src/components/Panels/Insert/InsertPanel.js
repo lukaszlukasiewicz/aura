@@ -11,8 +11,8 @@ const InsertPanel = props => {
     <Panel title="Wkład">
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5em"}}>
         <Button label="Brak" active={product.insert == false} onClick={()=>updateProduct({insert:false})} />
-        {material == "wood" && <Button label="Lamela" active={product.insert == "lamela"} onClick={()=>updateProduct({insert:"lamela"})} />}
-        {material == "composite" && <Button label="Lechuza" active={product.insert == "lechuza"} onClick={()=>updateProduct({insert:"lechuza"})} />}
+        {material == "wood" && <Button label="Lechuza" active={product.insert == "lechuza"} onClick={()=>updateProduct({insert:"lechuza"})} />}
+        {material == "composite" && <Button label="Lamela" active={product.insert == "Lamela"} onClick={()=>updateProduct({insert:"lamela"})} />}
       </div>
     </Panel>
   )
