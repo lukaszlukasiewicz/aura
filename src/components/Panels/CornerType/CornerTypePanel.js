@@ -6,7 +6,7 @@ import ProductContext from 'contexts/ProductContext';
 const CornerTypePanel = props => {  
   
   const {product,updateProduct} = useContext(ProductContext);
-  if(product.material != "wood") return false;
+  if(product.material != "wood" && product.material != "metal") return false;
   return (
     <Panel title="Narożniki">
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5em"}}>

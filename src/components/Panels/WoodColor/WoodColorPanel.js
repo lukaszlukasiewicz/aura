@@ -33,7 +33,7 @@ const WoodColorButton = props => {
 const WoodColorPanel = props => {
 
   const {product} = useContext(ProductContext);
-  if(product.material != "wood") return false;
+  if(product.material != "wood"  && product.material != "metal") return false;
 
   return (
     <Panel title="Kolor drewna">

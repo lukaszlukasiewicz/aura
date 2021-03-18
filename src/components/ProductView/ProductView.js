@@ -84,7 +84,7 @@ const ProductView  = props => {
     const context = canvas.getContext('2d');
     context.scale(.2,.2);
     const {material,materialColor,corners,type,cornerColor,insert} = product;
-    const folder = `${window.auraConfiguratorUrl}assets/products/${material}${material == "wood" ? "-" + corners : ""}/${type}/`;
+    const folder = `${window.auraConfiguratorUrl}assets/products/${material}${material == "wood" || material == "metal"? "-" + corners : ""}/${type}/`;
 
     const images = [];
     images.push(loadImage(folder+"shadow.png"));
@@ -105,6 +105,38 @@ const ProductView  = props => {
         }
       }
     }
+
+    if(material == "metal") {      
+      images.push(loadImage(`${folder}${materialColor.color}_${materialColor.wood}.png`));
+      if(cornerColor == "silver") images.push(loadImage(`${folder}silver.png`));
+      if(cornerColor == "graphite" && corners == "sharp") images.push(loadImage(`${folder}graphite.png`));
+      if(cornerColor.includes("RAL")) {
+        images.push(ralImage(
+          ral[cornerColor],
+          `${folder}ral_mask.png`,
+          `${folder}ral_shadow.png`,
+          `${folder}reflections.png`,
+        ));
+      }
+    }
+
+    /* if(material == "metal") {
+      if(cornerColor == "wood" && corners == "round") {
+        images.push(loadImage(`${folder}wood_${materialColor.color}_${materialColor.wood}.png`));
+      } else {
+        images.push(loadImage(`${folder}${materialColor.color}_${materialColor.wood}.png`));
+        if(cornerColor == "silver") images.push(loadImage(`${folder}silver.png`));
+        if(cornerColor == "graphite" && corners == "sharp") images.push(loadImage(`${folder}graphite.png`));
+        if(cornerColor.includes("RAL")) {
+          images.push(ralImage(
+            ral[cornerColor],
+            `${folder}ral_mask.png`,
+            `${folder}ral_shadow.png`,
+            `${folder}reflections.png`,
+          ));
+        }
+      }
+    } */
 
     if(material == "composite") {
       images.push(loadImage(`${folder}composite.png`))

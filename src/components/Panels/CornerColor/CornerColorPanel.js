@@ -9,7 +9,7 @@ const ralIcon = `${window.auraConfiguratorUrl}/assets/textures/ral.jpg`;
 
 const CornerColorPanel = (props = {}) =>{
   const {product,updateProduct} = useContext(ProductContext);  
-  if(product.material != "wood") return false;
+  if(product.material != "wood" && product.material != "metal") return false;
 
   const {color,wood} = product.materialColor;
   const woodIcon = `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;

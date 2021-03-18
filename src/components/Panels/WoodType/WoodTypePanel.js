@@ -8,7 +8,7 @@ const getTextureUrl = (wood,color) => `${window.auraConfiguratorUrl}/assets/text
 const woodPanel = props => {  
   
   const {product,updateProduct} = useContext(ProductContext);
-  if(product.material != "wood") return false;
+  if(product.material != "wood"  && product.material != "metal") return false;
   const {wood,color} = product.materialColor
 
   const setwood = wood => {

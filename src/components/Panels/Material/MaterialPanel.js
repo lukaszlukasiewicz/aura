@@ -12,9 +12,10 @@ const MaterialPanel = props => {
   }
   return (
     <Panel title="Materiał">
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5em"}}>
-        <Button label="Drewno" active={product.material == "wood"} onClick={()=>setType("wood")} />
-        <Button label="Kompozyt" active={product.material == "composite"} onClick={()=>setType("composite")} />
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:".5em"}}>
+        <Button label="Drewno" active={product.material == "wood"} bigIcon={true} onClick={()=>setType("wood")} />
+        <Button label="Drewno/Metal" active={product.material == "metal"} bigIcon={true} onClick={()=>setType("metal")} />
+        <Button label="Kompozyt" active={product.material == "composite"} bigIcon={true} onClick={()=>setType("composite")} />
       </div>
     </Panel>
   )
