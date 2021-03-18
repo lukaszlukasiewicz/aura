@@ -1,5 +1,6 @@
 const { createContext } = require("preact");
 import {useReducer} from "preact/hooks";
+import config from "config";
 
 window.auraConfiguratorUrl  = document.currentScript.src.replace("auraConfigurator.js","");
 
