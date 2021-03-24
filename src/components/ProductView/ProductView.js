@@ -83,31 +83,16 @@ const ProductView  = props => {
     setLoading(true);
     const context = canvas.getContext('2d');
     context.scale(.2,.2);
-    const {material,materialColor,corners,type,cornerColor,insert} = product;
+    const {material,color,woodType,woodColor,corners,type,cornerColor,insert} = product;
     const folder = `${window.auraConfiguratorUrl}assets/products/${material}${material == "wood" || material == "metal"? "-" + corners : ""}/${type}/`;
 
     const images = [];
     images.push(loadImage(folder+"shadow.png"));
-    if(material == "wood") {
-      if(cornerColor == "wood" && corners == "round") {
-        images.push(loadImage(`${folder}wood_${materialColor.color}_${materialColor.wood}.png`));
-      } else {
-        images.push(loadImage(`${folder}${materialColor.color}_${materialColor.wood}.png`));
-        if(cornerColor == "silver") images.push(loadImage(`${folder}silver.png`));
-        if(cornerColor == "graphite" && corners == "sharp") images.push(loadImage(`${folder}graphite.png`));
-        if(cornerColor.includes("RAL")) {
-          images.push(ralImage(
-            ral[cornerColor],
-            `${folder}ral_mask.png`,
-            `${folder}ral_shadow.png`,
-            `${folder}reflections.png`,
-          ));
-        }
-      }
-    }
+    if(material == "wood") images.push(loadImage(`${folder}${woodColor}_${woodType}.png`));
+
 
     if(material == "metal") {      
-      images.push(loadImage(`${folder}${materialColor.color}_${materialColor.wood}.png`));
+      images.push(loadImage(`${folder}${woodColor}_${woodType}.png`));
       if(cornerColor == "silver") images.push(loadImage(`${folder}silver.png`));
       if(cornerColor == "graphite" && corners == "sharp") images.push(loadImage(`${folder}graphite.png`));
       if(cornerColor.includes("RAL")) {
@@ -120,35 +105,17 @@ const ProductView  = props => {
       }
     }
 
-    /* if(material == "metal") {
-      if(cornerColor == "wood" && corners == "round") {
-        images.push(loadImage(`${folder}wood_${materialColor.color}_${materialColor.wood}.png`));
-      } else {
-        images.push(loadImage(`${folder}${materialColor.color}_${materialColor.wood}.png`));
-        if(cornerColor == "silver") images.push(loadImage(`${folder}silver.png`));
-        if(cornerColor == "graphite" && corners == "sharp") images.push(loadImage(`${folder}graphite.png`));
-        if(cornerColor.includes("RAL")) {
-          images.push(ralImage(
-            ral[cornerColor],
-            `${folder}ral_mask.png`,
-            `${folder}ral_shadow.png`,
-            `${folder}reflections.png`,
-          ));
-        }
-      }
-    } */
-
     if(material == "composite") {
       images.push(loadImage(`${folder}composite.png`))
       images.push(ralImage(
-        ral[materialColor],
+        ral[color],
         `${folder}ral_mask.png`,
         `${folder}composite.png`,
         `${folder}reflections.png`,
       ))
     }
     
-    if(insert) images.push(loadImage(`${folder}${insert}.png`));
+    if(insert) images.push(loadImage(`${folder}${insert.toLowerCase()}.png`));
 
     Promise.all(images).then(images=>{
       canvas.width = images[0].width;
