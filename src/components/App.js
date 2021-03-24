@@ -21,10 +21,10 @@ const App = () => {
 			<MaterialPanel />
 			<TypePanel />
 			<CornerTypePanel />
+			<CornerColorPanel/>
 			<ColorPanel/>
 			<WoodTypePanel />
 			<WoodColorPanel />
-			<CornerColorPanel/>
 			<InsertPanel />
 		</Sidebar>
 	</div></ProductContextWrapper>)
