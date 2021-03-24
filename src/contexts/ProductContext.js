@@ -1,6 +1,6 @@
 const { createContext } = require("preact");
 import {useReducer} from "preact/hooks";
-import config from "config";
+import configs from "config";
 
 window.auraConfiguratorUrl  = document.currentScript.src.replace("auraConfigurator.js","");
 
@@ -9,52 +9,39 @@ const cache = {
     wood: "okume",
     color:"natural",
   },
-  composieteColor: "RAL 1000",
+  compositeColor: "RAL 1000",
   cornerColor: "wood",
   conrenrType: "round",
 }
 
-const initialProductState = {
-  type : "standard",
-  material: "wood",
-  materialColor:cache.woodColor,
-  corners : "round",
-  cornerColor: cache.cornerColor,
-  insert: false,
-};
-
-const getPath = (path,object) => {
-  const keys = path.split(".");
-  console.log(keys);
+const validateProductProp = (value,propConfig) => {
+  if ( !propConfig ) return false;
+  if (  value === false  && propConfig.empty ) return true;
+  if ( propConfig.expression instanceof RegExp) return propConfig.expression.test(value);
+  if ( propConfig.value  && value === propConfig.value) return true;
+  if ( Array.isArray(propConfig.values))  return propConfig.values.includes(value);
+  return false;
 }
 
+const validateState = (state) => {
+  if(!state || !state.material) return false;
+  const config = configs[state.material];
+  if(!config) return false;
+  const keys = Object.keys(config);
+  const validState = {};
+  keys.forEach(key => {
+    const currentValue = state[key];
+    const isValid = validateProductProp(currentValue,config[key]);
+    validState[key] = isValid ? currentValue : config[key]?.default || config[key]?.value;
+  })
+  return validState;
+}
+
+const initialProductState = validateState({material:"wood"});
+
 const reducer = (product,updatedProps) => {
-
-  console.log(updatedProps);
-  // Save values to cache
-  if((product.material == "wood" || updatedProps.material == "metal") && updatedProps.materialColor) cache.woodColor = updatedProps.materialColor;
-  if(product.material == "composite" && updatedProps.materialColor) cache.composieteColor = updatedProps.materialColor;
-  if((product.material == "wood" || updatedProps.material == "metal") && updatedProps.cornerColor) cache.cornerColor = updatedProps.cornerColor;
-  
-  if( (updatedProps.material == "wood" || updatedProps.material == "metal") && product.insert == "lamela" ) updatedProps.insert = false;
-  if(updatedProps.material == "composite" && product.insert == "lechuza" ) updatedProps.insert = false;
-
-  if(updatedProps.material == "metal" &&  ( product.cornerColor == "wood" || !product.cornerColor) ) {
-    updatedProps.cornerColor = cache.cornerColor != 'wood' ? cache.cornerColor : 'silver';
-  } 
-
-  if(updatedProps.material == "composite" && product.type == "tall")  updatedProps.type = "standard"
-
-  if(updatedProps.material == "composite") delete product.cornerColor; 
-  if(updatedProps.material == "wood" || updatedProps.material == "metal") product.cornerColor = cache.cornerColor;
-
-  if(updatedProps.material == "composite") delete product.cornerType; 
-  if(updatedProps.material == "wood" || updatedProps.material == "metal") product.cornerType = cache.cornerType;
-
-  if(updatedProps.material == "wood" || updatedProps.material == "metal") product.materialColor = cache.woodColor;
-  if(updatedProps.material == "composite") product.materialColor = cache.composieteColor;
-
-  const newState = Object.assign({},product,updatedProps);
+  const state = Object.assign({},product,updatedProps);
+  const newState = validateState(state);
   return newState; 
 }
 
