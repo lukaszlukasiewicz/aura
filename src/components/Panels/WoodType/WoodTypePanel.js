@@ -8,18 +8,11 @@ const getTextureUrl = (wood,color) => `${window.auraConfiguratorUrl}/assets/text
 const woodPanel = props => {  
   
   const {product,updateProduct} = useContext(ProductContext);
-  if(product.material != "wood"  && product.material != "metal") return false;
-  const {wood,color} = product.materialColor
-
+  if(!product.woodType) return false;
+  const {woodType:wood,woodColor:color} = product
   const setwood = wood => {
-    updateProduct({
-      materialColor : {
-        wood,
-        color, 
-      }
-    });
+    updateProduct({ woodType : wood });
   }
-
   return (
     <Panel title="Rodzaj drewna">
       <div style={{display:"grid",gridTemplateColumns: "1fr 1fr",gap:".5em"}}>

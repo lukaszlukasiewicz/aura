@@ -9,8 +9,7 @@ const getTextureUrl = (wood,color) => `${window.auraConfiguratorUrl}/assets/text
 const WoodColorButton = props => {
 
   const {product,updateProduct} = useContext(ProductContext);
-  const {wood,color} = product.materialColor;
-
+  const {woodType:wood,woodColor:color} = product;
   return (
     <Button 
       label={props.label}
@@ -18,14 +17,7 @@ const WoodColorButton = props => {
       active={color == props.color} 
       iconUrl={getTextureUrl(wood,props.color)}
       bigIcon={true}
-      onClick={() => updateProduct(
-        {
-          materialColor: {
-            wood,
-            color: props.color,
-          }
-        }
-      )}
+      onClick={() => updateProduct({ woodColor: props.color })}
     />
   )
 }
@@ -33,7 +25,7 @@ const WoodColorButton = props => {
 const WoodColorPanel = props => {
 
   const {product} = useContext(ProductContext);
-  if(product.material != "wood"  && product.material != "metal") return false;
+  if(!product.woodColor) return false;
 
   return (
     <Panel title="Kolor drewna">

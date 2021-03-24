@@ -9,9 +9,8 @@ const ralIcon = `${window.auraConfiguratorUrl}/assets/textures/ral.jpg`;
 
 const CornerColorPanel = (props = {}) =>{
   const {product,updateProduct} = useContext(ProductContext);  
-  if(product.material != "wood" && product.material != "metal") return false;
-
-  const {color,wood} = product.materialColor;
+  if( !product.cornerColor) return false;
+  const {woodType:wood,woodColor:color} = product;
   const woodIcon = `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
   const ralColor = product.cornerColor.includes("RAL") ? product.cornerColor : cachedRalColor;
   const [ral, setRal] = useState(product.cornerColor.includes('RAL'));
@@ -23,11 +22,10 @@ const CornerColorPanel = (props = {}) =>{
   }
   return (
     <Panel title="Kolor narożników">
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:".5em",marginBottom:".5em"}}>
-        <Button label="Srebrny" iconColor="#eee" round={true} active={product.cornerColor == "silver"} onClick={()=>setColor("silver")} />
-        <Button label="Grafitowy"  iconColor="#555" round={true} active={product.cornerColor == "graphite"} onClick={()=>setColor("graphite")} />
-        <Button label="Drewno" iconUrl={woodIcon} round={true} active={product.cornerColor == "wood"} onClick={()=>setColor("wood")} />
-        <Button label="RAL" iconUrl={ralIcon} round={true} active={ral} onClick={()=>setColor(ralColor)} />
+      <div style={{display:"grid",gridAutoColumns:"1fr",gridAutoFlow:"column",gap:".5em"}}>
+        <Button label="Srebrny" bigIcon={true} iconColor="#eee" round={true} active={product.cornerColor == "silver"} onClick={()=>setColor("silver")} />
+        <Button label="Grafitowy"  bigIcon={true}  iconColor="#555" round={true} active={product.cornerColor == "graphite"} onClick={()=>setColor("graphite")} />
+        <Button label="RAL" bigIcon={true}  iconUrl={ralIcon} round={true} active={ral} onClick={()=>setColor(ralColor)} />
       </div>
       { ral && <div>
         <h3>Wybierz kolor</h3>

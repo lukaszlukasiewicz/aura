@@ -6,11 +6,11 @@ import RalPalette from "components/UI/RalPalette";
 const ColorPanel = props => {  
   
   const {product,updateProduct} = useContext(ProductContext);
-  if (product.material == "wood" || product.material == "metal") return false;
+  if (!product.color) return false;
   return (
     <Panel title="Kolor">
       <div>
-        <RalPalette selected={product.materialColor} onClick={ color => updateProduct({materialColor:color})}/>
+        <RalPalette selected={product.color} onClick={ color => updateProduct({color})}/>
       </div>
     </Panel>
   )
