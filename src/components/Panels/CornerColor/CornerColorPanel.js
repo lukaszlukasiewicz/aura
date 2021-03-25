@@ -13,11 +13,8 @@ const CornerColorPanel = (props = {}) =>{
   const {woodType:wood,woodColor:color} = product;
   const woodIcon = `${window.auraConfiguratorUrl}/assets/textures/${color != 'natural' ? `${color  }_` : ""}${wood}.jpg`;
   const ralColor = product.cornerColor.includes("RAL") ? product.cornerColor : cachedRalColor;
-  const [ral, setRal] = useState(product.cornerColor.includes('RAL'));
+  const isRal = product.cornerColor.includes('RAL');
   const setColor = color => {
-    const isRal = color.includes('RAL');
-    if(isRal) cachedRalColor = color;
-    setRal(isRal);
     updateProduct({cornerColor:color})
   }
   return (
@@ -25,11 +22,11 @@ const CornerColorPanel = (props = {}) =>{
       <div style={{display:"grid",gridAutoColumns:"1fr",gridAutoFlow:"column",gap:".5em"}}>
         <Button label="Srebrny" bigIcon={true} iconColor="#eee" round={true} active={product.cornerColor == "silver"} onClick={()=>setColor("silver")} />
         <Button label="Grafitowy"  bigIcon={true}  iconColor="#555" round={true} active={product.cornerColor == "graphite"} onClick={()=>setColor("graphite")} />
-        <Button label="RAL" bigIcon={true}  iconUrl={ralIcon} round={true} active={ral} onClick={()=>setColor(ralColor)} />
+        <Button label="RAL" bigIcon={true}  iconUrl={ralIcon} round={true} active={isRal} onClick={()=>setColor(ralColor)} />
       </div>
-      { ral && <div>
+      { isRal && <div>
         <h3>Wybierz kolor</h3>
-        <RalPalette selected={cachedRalColor} onClick={setColor} />
+        <RalPalette selected={product.cornerColor} onClick={setColor} />
       </div>}
     </Panel>
   )
