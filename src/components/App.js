@@ -11,8 +11,8 @@ import CornerTypePanel from "components/Panels/CornerType/CornerTypePanel"
 import CornerColorPanel from "components/Panels/CornerColor/CornerColorPanel"
 import InsertPanel from "components/Panels/Insert/InsertPanel"
 import ColorPanel from "components/Panels/Color/ColorPanel"
-const App = () => {
-
+import AddToCart from "components/UI/AddToCart"
+const App = props => {
 	return (<ProductContextWrapper><div className={Styles.App} id="app">
 		<div className={Styles.viewWraprer}>
 			<ProductView />
@@ -26,6 +26,7 @@ const App = () => {
 			<WoodTypePanel />
 			<WoodColorPanel />
 			<InsertPanel />
+			<AddToCart cart={props.cartRef}/>
 		</Sidebar>
 	</div></ProductContextWrapper>)
 }

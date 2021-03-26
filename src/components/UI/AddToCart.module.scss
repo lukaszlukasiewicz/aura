@@ -1,0 +1,16 @@
+.AddToCart {
+  position:sticky;
+  bottom:0;
+  button {
+    display:block;
+    border:0;
+    text-align:center;
+    width:100%;
+    box-sizing:border-box;
+    padding:1em;
+    background-color: #2fd29a;
+    color:#fff;
+    text-transform:uppercase;
+    font-weight: bold;
+  }
+}
