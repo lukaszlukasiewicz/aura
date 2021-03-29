@@ -19,7 +19,7 @@ const TypePanel = props => {
               key={type}
               active={product.type == type} 
               bigIcon={true}
-              iconUrl={`${window.auraConfiguratorUrl}/assets/icons/type_standard.svg`}
+              iconUrl={`${window.auraConfiguratorUrl}/assets/icons/type_${type}.svg`}
               onClick={()=> updateProduct({type})} 
             />
           })
