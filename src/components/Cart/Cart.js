@@ -1,4 +1,4 @@
-import {useState} from "preact/hooks";
+import {useState,useCallback} from "preact/hooks";
 import Styles from "./Cart.module.scss";
 
 const Cart = props => {
@@ -28,13 +28,15 @@ const Cart = props => {
   const remove = () => cart;
   const get = () => cart;
 
+  const captureClickEvent = useCallback(e => e.stopPropagation(),[cartRef]);
+
   cartRef.add = add;
   cartRef.get = get;
   cartRef.show = show;
   cartRef.hide = hide;
   return ( visible ? 
   <div className={Styles.CartWraper} onClick={e => hide()}>
-    <div className={Styles.Cart}>
+    <div className={Styles.Cart} onClick={captureClickEvent} >
       Cart:<ul>
         {cart.map((cartItem,index) => {
           const {product,amount} = cartItem
