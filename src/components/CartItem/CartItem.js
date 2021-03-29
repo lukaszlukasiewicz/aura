@@ -74,17 +74,23 @@ export const CartItem = props => {
     const canvas = canvasRef.current;
     if(!canvas || !product ) return false;
     const context = canvas.getContext('2d');
-    const productImage = useProductImage(product);
-    console.log(product.type,imagesAttrs,imagesAttrs[product.type]);
     const {ratio,x,y} = imagesAttrs[product.type] || {ratio:2,x:100,y:100};
-    productImage.then(images=>{
-      canvas.width = images[0].width/ratio;
-      canvas.height = images[0].height/ratio;
-      images.forEach(image => {
-        context.drawImage(image,x,y,image.width,image.height)
+    if(product.image) {
+      canvas.width = product.image.width;
+      canvas.height = product.image.height; 
+      context.putImageData(product.image,0,0)
+    } else {
+      const productImage = useProductImage(product);
+      productImage.then(images=>{
+        canvas.width = images[0].width/ratio;
+        canvas.height = images[0].height/ratio;
+        images.forEach(image => {
+          context.drawImage(image,x,y,image.width,image.height)
+        })
+      }).then( () => {
+        product.image = context.getImageData(0,0,canvas.width,canvas.height);
       })
-    })
-
+    }
   },[canvasRef.current,product]);
   return (<li className={Styles.CartItem} key={id}>
     <canvas ref={canvasRef} className={Styles.ProductImage} />
