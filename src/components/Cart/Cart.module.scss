@@ -1,10 +1,27 @@
 .Cart {
   background:#fff;
   height:100%;
-  max-widtH:50em;
+  max-widtH:45em;
   margin:0 0 0 auto;
   box-sizing:border-box;
+  overflow:auto;
   box-shadow: 0 0 20px rgba(0,0,0,.1);
+  padding:1px;
+  h1 {
+    color:#2fd29a;
+    margin:0;
+    padding:1em .5em;
+    font-size:1.4em;
+    text-transform:uppercase;
+    border-bottom:solid 1px #eee;
+    margin:0 1em;
+  }
+}
+
+.CartItems {
+  padding:0 1em;
+  margin:0;
+  min-height: 81.4vh;
 }
 
 .CartWraper {
@@ -17,6 +34,31 @@
   background:rgba(255,255,255,.6);
 }
 
+.CartSummary {
+  position:sticky;
+  bottom:0;
+  background:#fff;
+  padding:1em;
+  background:#2fd29a;
+  color:#fff;
+  > div {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+  }
+  .CartTotal {
+    line-height:1.1;
+    h2 {
+      margin:0;
+    }
+    p {
+      margin:0;
+    }
+  }
+  .CartOrder {
+    text-align:right;
+  }
+}
 
 body {
   height:100vh;

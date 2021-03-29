@@ -1,0 +1,55 @@
+.ProductImage {
+  widtH:5em;
+  height:5em;
+  border-radius:.2em;
+}
+
+.ProductPrice {
+  text-align:right;
+  line-height:1;
+  h3 {
+    color:#2fd29a;
+    margin:0;
+    font-size:1.5em;
+  }
+  span {
+    opacity:.5;
+    font-size:.8rem;
+    white-space: nowrap;
+  }
+}
+
+.ProductAmount {
+  input {
+    max-width:2em;
+    padding:.5em;
+    border:1px solid #eee;
+    text-align:center;
+    font-size:1.1em;
+    border-radius:.2em;
+  }
+}
+
+.CartItem {
+  list-style-type:none;
+  display:flex;
+  align-items: center;
+  gap:1em;
+  padding:1em .5em;
+  &:not(:last-child) {
+    border-bottom:solid 1px #eee;
+  }
+  .ProductInfo {
+    flex-grow:1;
+    h2 {
+      margin:0;
+      font-size:1.2em;
+      font-weight:normal;
+    }
+    p {
+      margin:0;
+      opacity:.5;
+      font-size:.8rem;
+    }
+  }
+}

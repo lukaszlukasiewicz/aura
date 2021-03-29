@@ -1,5 +1,28 @@
 import {useState,useCallback} from "preact/hooks";
 import Styles from "./Cart.module.scss";
+import {CartItem} from "components/CartItem/CartItem";
+
+const cartTotal = () => {
+  return <div>
+    <h2>300 pln</h2>
+    <p>netto 280 pln</p>
+  </div>
+}
+
+const CartSummary = props => {
+ return (
+  <div className={Styles.CartSummary}>
+    <div>
+      <div className={Styles.CartTotal}>
+        {cartTotal()}
+      </div>
+      <div className={Styles.CartOrder}>
+        <button>Zamów</button>
+      </div>
+    </div>
+  </div>
+ )
+}
 
 const Cart = props => {
   const [cart, updateCart] = useState([]);
@@ -11,7 +34,8 @@ const Cart = props => {
       if(inCart) {
         inCart.amount += amount
       } else {
-        cart.push({ product,amount });
+        const id = Math.random().toString(32).substring(2);
+        cart.push({ id,product,amount });
       }
       console.log(cart);
       return [...cart];
@@ -37,14 +61,19 @@ const Cart = props => {
   return ( visible ? 
   <div className={Styles.CartWraper} onClick={e => hide()}>
     <div className={Styles.Cart} onClick={captureClickEvent} >
-      Cart:<ul>
-        {cart.map((cartItem,index) => {
-          const {product,amount} = cartItem
-          return (<li>
-            <b>product:</b> {JSON.stringify(product)} <b>amount:</b> {amount}
-          </li>)
-        })}
-      </ul>
+      <h1>Twój koszyk</h1>
+      { cart.length > 0 ? <>
+        <ul className={Styles.CartItems}>
+          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+        </ul>
+        <CartSummary/>
+      </> :
+      <p>Twój koszyk jest pusty. Dodaj produkt do koszyka aby złożyc zamówienie</p>
+      }
     </div>
   </div> 
   : false)
