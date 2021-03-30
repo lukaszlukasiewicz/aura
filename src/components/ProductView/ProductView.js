@@ -29,17 +29,6 @@ if (!('createImageBitmap' in window)) {
 	};
 }
 
-const loadImage = (url) => {
-  return new Promise((fulfill, reject) => {
-    let imageObj = new Image();
-    imageObj.onload = () => fulfill(imageObj);
-    imageObj.onerror = () => reject({error:true, message: `error loading: ${url}`});
-    imageObj.src = url;
-  });
-}
-
-
-
 
 const ProductView  = props => {
   
