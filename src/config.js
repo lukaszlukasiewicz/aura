@@ -3,7 +3,7 @@ const woodColors = ["natural","ash-gray","tvt-5060","tvt-5056","5073","5077"]
 
 
 const typeLabels = {
-  stadard : "Standardowa",
+  standard : "Standardowa",
   double : "Podwójna",
   tall : "Wysoka"
 }

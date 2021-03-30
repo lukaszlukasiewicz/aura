@@ -8,7 +8,6 @@ const TypePanel = props => {
   const {product,updateProduct} = useContext(ProductContext);
   
   const {values:types,labels }  = configs[product.material].type;
-  console.log(types,labels);
   return (
     <Panel title="Rozmiar donicy">
       <div style={{display:"grid",gridAutoColumns:"1fr",gridAutoFlow:"column",gap:".5em"}}>
