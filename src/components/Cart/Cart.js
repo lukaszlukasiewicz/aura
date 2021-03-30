@@ -1,11 +1,15 @@
 import {useState,useCallback} from "preact/hooks";
 import Styles from "./Cart.module.scss";
 import {CartItem} from "components/CartItem/CartItem";
+import {useProductPrice,formatPrice,net} from "hooks/useProductPrice";
 
-const cartTotal = () => {
+
+
+const cartTotal = cart => {
+  const total = cart.reduce((total,item) => total + item.price.total.gross.value, 0);
   return <div>
-    <h2>300 pln</h2>
-    <p>netto 280 pln</p>
+    <h2>{formatPrice(total)}</h2>
+    <p>netto {formatPrice(net(total))}</p>
   </div>
 }
 
@@ -14,7 +18,7 @@ const CartSummary = props => {
   <div className={Styles.CartSummary}>
     <div>
       <div className={Styles.CartTotal}>
-        {cartTotal()}
+        {cartTotal(props.cart)}
       </div>
       <div className={Styles.CartOrder}>
         <button>Zamów</button>
@@ -28,19 +32,20 @@ const Cart = props => {
   const [cart, updateCart] = useState([]);
   const [visible,showCart] = useState(false);
   const {cartRef} = props
-  const add = (product,amount) => {
+  const add = useCallback((product,amount = 1) => {
     updateCart(cart => {
-      const inCart = cart.find(item => JSON.stringify(item.product) == JSON.stringify(product));
-      if(inCart) {
-        inCart.amount += amount
+      let currentProduct = cart.find(item => JSON.stringify(item.product) == JSON.stringify(product));
+      if(currentProduct) {
+        currentProduct.amount += amount
       } else {
         const id = Math.random().toString(32).substring(2);
-        cart.push({ id,product,amount });
+        currentProduct = {id,product,amount}
+        cart.push(currentProduct);
       }
-      console.log(cart);
+      currentProduct.price = useProductPrice(product, currentProduct.amount);
       return [...cart];
     })
-  }
+  },[])
   const show = () => {
     showCart(1);
     document.body.classList.add(Styles['aura-configurator__cart--visible']);
@@ -51,6 +56,20 @@ const Cart = props => {
   }
   const remove = () => cart;
   const get = () => cart;
+
+  const updateAmount = useCallback((id,amount) => {
+    updateCart(cart =>{
+      const itemToUpdate = cart.find(cartItem =>  { 
+        return cartItem.id == id;
+      });
+      if(itemToUpdate) {
+        itemToUpdate.amount = amount;
+        itemToUpdate.price = useProductPrice(itemToUpdate.product, itemToUpdate.amount);
+        return [...cart];
+      }
+      return cart;
+    })
+  },[]);
 
   const captureClickEvent = useCallback(e => e.stopPropagation(),[cartRef]);
 
@@ -64,13 +83,9 @@ const Cart = props => {
       <h1>Twój koszyk</h1>
       { cart.length > 0 ? <>
         <ul className={Styles.CartItems}>
-          {cart.map((cartItem) => <CartItem product={cartItem} />)}
-          {cart.map((cartItem) => <CartItem product={cartItem} />)}
-          {cart.map((cartItem) => <CartItem product={cartItem} />)}
-          {cart.map((cartItem) => <CartItem product={cartItem} />)}
-          {cart.map((cartItem) => <CartItem product={cartItem} />)}
+          {cart.map((cartItem) => <CartItem key={cartItem.id} product={cartItem} updateAmount={ amount => updateAmount(cartItem.id,amount)} />)}
         </ul>
-        <CartSummary/>
+        <CartSummary cart={cart}/>
       </> :
       <p>Twój koszyk jest pusty. Dodaj produkt do koszyka aby złożyc zamówienie</p>
       }
