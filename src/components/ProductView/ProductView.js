@@ -1,7 +1,7 @@
 import Styles from "./ProductView.module.scss";
 import {useContext,useState,useEffect} from "preact/hooks"
 import ProductContext from 'contexts/ProductContext';
-import {useProductImage} from "hooks/useProductimage";
+import {useProductImage} from "hooks/useProductImage";
 
 // Create  image Boitmap polyfill for Safari
 if (!('createImageBitmap' in window)) {
