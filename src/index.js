@@ -4,18 +4,18 @@ import Cart from './components/Cart/Cart';
 
 const cartRef = {};
 
-const _cart = habitat(Cart)
+/* const _cart = habitat(Cart)
 _cart.render({
   selector: "body",
   clean: false,
   defaultProps: {cartRef}
-})
+}) */
 
 const _habitat = habitat(App)
 _habitat.render({
   selector:"#aura-konfigurator",
   clean:true,
-  defaultProps: {cartRef},
+  defaultProps: {},
 })
 
 const cartBtn = document.querySelectorAll('[data-aura-show-cart]');

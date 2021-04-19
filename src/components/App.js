@@ -26,7 +26,7 @@ const App = props => {
 			<WoodTypePanel />
 			<WoodColorPanel />
 			<InsertPanel />
-			<AddToCart cart={props.cartRef}/>
+			{ props.cartRef ? <AddToCart cart={props.cartRef}/> : false}			
 		</Sidebar>
 	</div></ProductContextWrapper>)
 }
