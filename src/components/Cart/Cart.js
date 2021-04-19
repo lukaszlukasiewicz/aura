@@ -1,4 +1,4 @@
-import {useState,useCallback} from "preact/hooks";
+import {useState,useCallback, useRef,useEffect, useLayoutEffect} from "preact/hooks";
 import Styles from "./Cart.module.scss";
 import {CartItem} from "components/CartItem/CartItem";
 import {useProductPrice,formatPrice,net} from "hooks/useProductPrice";
@@ -14,24 +14,26 @@ const cartTotal = cart => {
 }
 
 const CartSummary = props => {
- return (
-  <div className={Styles.CartSummary}>
-    <div>
-      <div className={Styles.CartTotal}>
-        {cartTotal(props.cart)}
-      </div>
-      <div className={Styles.CartOrder}>
-        <button>Zamów</button>
+  return ( 
+    <div className={Styles.CartSummary}>
+      <div>
+        <div className={Styles.CartTotal}>
+          {cartTotal(props.cart)}
+        </div>
+        <div className={Styles.CartOrder}>
+          <button>Zamów</button>
+        </div>
       </div>
     </div>
-  </div>
- )
+  )
 }
 
 const Cart = props => {
   const [cart, updateCart] = useState([]);
   const [visible,showCart] = useState(false);
-  const {cartRef} = props
+  const {cartRef} = props;
+  const cartRefEl = useRef();
+  console.log(cartRefEl)
   const add = useCallback((product,amount = 1) => {
     updateCart(cart => {
       let currentProduct = cart.find(item => JSON.stringify(item.product) == JSON.stringify(product));
@@ -78,7 +80,7 @@ const Cart = props => {
   cartRef.show = show;
   cartRef.hide = hide;
   return ( visible ? 
-  <div className={Styles.CartWraper} onClick={e => hide()}>
+  <div ref={cartRefEl} className={Styles.CartWraper} onClick={e => hide()}>
     <div className={Styles.Cart} onClick={captureClickEvent} >
       <h1>Twój koszyk</h1>
       { cart.length > 0 ? <>
