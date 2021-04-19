@@ -1,4 +1,5 @@
 import {useProductImage} from "hooks/useProductImage";
+import {useProductName} from "hooks/useProductName";
 import {useState} from "preact/hooks";
 import Styles from './CartItem.module.scss';
 
@@ -18,44 +19,6 @@ const imagesAttrs = {
     x : -200,
     y: -100,
   },
-}
-
-const materialLabels = {
-  'metal' : "drewniano/metalowa",
-  'wood' : "drweniana",
-  'composite' : "kompozytowa"
-}
-
-const typeLabels = {
-  'standard' : "",
-  'double' : "podwójna",
-  'tall' : "wysoka"
-}
-
-const cornersLabels = {
-  'sharp' : 'proste',
-  'round' : 'zaokrąglone'
-}
-
-const getProductName = product => {
-  return `Donica ${materialLabels[product.material]} ${typeLabels[product.type]}`;
-}
-
-const getProductDescription = product => {
-
-  if(product.material == 'metal') {
-    const {woodType,woodColor,corners,cornerColor,insert} = product;
-    return `drewno: ${woodType}, kolor: ${woodColor}, narożniki: ${cornersLabels[corners]}, kolor narożników: ${cornerColor} ${insert ? `, wkład: ${insert}` : ''}`
-  } 
-  if(product.material == 'wood') {
-    const {woodType,woodColor,corners,insert} = product;
-    return `drewno: ${woodType}, kolor: ${woodColor}, narożniki: ${cornersLabels[corners]} ${insert ? `, wkład: ${insert}` : ''}`
-  } 
-  if(product.material == 'composite') {
-    const {color,insert} = product;
-    return `kolor: ${color} ${insert ? `, wkład: ${insert}` : ''}`
-  } 
-  return "Opis produktu";
 }
 
 const productPrice = (price) => {
@@ -84,6 +47,7 @@ export const CartItem = props => {
 
   const {id,product,price,amount} = props.product;
   const {updateAmount} = props;
+  const [productName, productDescription] = useProductName(product)
   //TODO: Move image genaretion to function that is adding product to cart
   // Not nice way to tell react that new image was generated and it needs to refresh; 
   const [generatedImage, setGeneratedImag] = useState(false)
@@ -96,8 +60,8 @@ export const CartItem = props => {
   return (<li className={Styles.CartItem} key={id}>
     <img src={product.image}  className={Styles.ProductImage}/>
     <div className={Styles.ProductInfo}>
-      <h2>{getProductName(product)}</h2>
-      <p>{getProductDescription(product)}</p>
+      <h2>{productName}</h2>
+      <p>{productDescription}</p>
     </div>
     <div className={Styles.ProductAmount}><input type="number" value={amount} min="1" onChange={e => updateAmount(e.target.value)} /></div>
     <div className={Styles.ProductPrice}>{productPrice(price)}</div>
