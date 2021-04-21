@@ -1,6 +1,7 @@
 import habitat from 'preact-habitat';
 import App from './components/App';
 import List from './List/List.js';
+import Toaster from 'components/Toaster/Toaster'
 /*
 import Cart from './components/Cart/Cart';
 const cartRef = {};
@@ -35,3 +36,11 @@ _habitat.render({
   },
 });
 
+const toastContainer = document.createElement('div')
+toastContainer.classList.add('toster');
+document.body.append(toastContainer);
+const _toaster = habitat(Toaster)
+_toaster.render({
+  selector:".toster",
+  clean:false,
+});
