@@ -3,14 +3,14 @@ import {useProductImage} from "hooks/useProductImage"
 
 const imagesAttrs = {
   'standard' : {
-    ratio : 3,
+    ratio : 2,
     x : -200,
-    y: -200,
+    y: -250,
   },
   'double' : {
-    ratio : 2,
-    x : -100,
-    y: -150,
+    ratio : 1.7,
+    x : -50,
+    y: -200,
   },
   'tall' : {
     ratio : 2,
@@ -35,10 +35,8 @@ const getImage = async (product) => {
 
 export const useProductThumb = product => {
   const [image, setImage] = useState(false);
-  if(!image) {
     getImage(product).then(image => {
       setImage(image);
     });
-  }
   return image
 }
