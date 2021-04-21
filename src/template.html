@@ -16,9 +16,14 @@
 </head>
 
 <body>
-	<a href="#" data-aura-show-cart style="position:fixed;z-index:999999">Koszyk</a>
-	<div id="aura-cart"></div>
-	<div id="aura-konfigurator"></div>
+	<div style="display:grid; grid-template-columns:1fr 1fr 1fr">
+		<div><div class="aura-list__container"></div></div>
+		<div style="text-align:center"><div class="aura-list__container"></div></div>
+		<div style="text-align:right"><div class="aura-list__container"></div></div>
+	</div>
+	
+	<div id="aura-konfigurator"></div>	
+	<div class="aura-list__container"></div>
 	<% preact.bodyEnd %>
 </body>
 
