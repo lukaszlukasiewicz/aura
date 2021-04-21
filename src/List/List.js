@@ -1,4 +1,4 @@
-import ListContainer from '../components/Listcontainer/ListContainer';
+import ListContainer from '../components/ListContainer/ListContainer';
 import {render as renderPreact} from 'preact';
 const products = new Set();
 const lists = new Set();
@@ -7,6 +7,7 @@ function List() {
 
   const add = product => {
     products.add(JSON.stringify(product));
+    if(window.auraToast) window.auraToast("Produkt dodany do listy");
     update();
   }
 
