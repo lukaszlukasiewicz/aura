@@ -103,8 +103,11 @@
   }
 }
 
-.ListContainer--visible {
-  overflow:hidden;
+@media (max-width:40em) {
+  .ListContainer--visible {
+    overflow:hidden;
+  }
+  
 }
 
 .ListContainer__ask {
