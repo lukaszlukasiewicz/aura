@@ -1,0 +1,141 @@
+.ListContainer {
+  position:absolute;
+  top:100%;
+  box-shadow:0 0 20px rgba(0,0,0,.1);
+  background:#fff;
+  padding: 1em;
+  border-radius:.3em;
+  z-index:999;
+  left:50%;
+  margin-top:1em;
+  transform:translateX(-50%);
+  >:first-child {
+    position:absolute;
+    border:solid .7em transparent;
+    border-bottom:solid .7em #fff;
+    top:-1.4em;
+    left:50%;
+    margin-left:(-.7em);
+  }
+  > div {
+    max-height:80vh;
+    overflow:auto;
+  }
+}
+
+.ListWrapper {
+  position:relative;
+  display:inline-block;
+  z-index:999;
+}
+
+
+.ListContainer--empty {
+  width:20em;
+  max-width:100%;
+  box-sizing: border-box;
+  padding:0 1em;
+  text-align:center;
+  color:#999;
+}
+
+.ListContainer__header {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:start;
+  display:none;
+  text-align:left;
+  margin:0 -1em -1em -1em;
+  transform: translatey(-1em);
+  padding:1em;
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 15%);
+  h2 {
+    font-size:1em;
+    text-transform: uppercase;
+    color:#333;
+    margin:0;
+  }
+  button {
+    cursor:pointer;
+    border:0;
+    background:inherit;
+    span {
+      display:none;
+    }
+    svg {
+      width:1em;
+      height:1em;
+    }
+  }
+}
+
+
+@media (max-width:40em) {
+  .ListContainer {
+    position:fixed;
+    margin:0 !important;
+    box-sizing: border-box;
+    transform: none;
+    width:100%;
+    height:100%;
+    max-height:none;
+    overflow:auto;
+    z-index:9999;
+    justify-content: center;
+    lefT:0;
+    top:0;
+    > div {
+      max-height:none;
+      overflow:initial;
+    }
+  }
+  .ListWrapper {
+    z-index:auto;
+  }
+  .ListContainer--empty {
+    width:auto;
+  }
+  .ListContainer__header {
+    display:grid;
+    position:sticky;
+    top:0;
+  }
+}
+
+.ListContainer--visible {
+  overflow:hidden;
+}
+
+.ListContainer__ask {
+  display: flex;
+  width: calc(100% + 2.4em);
+  border: 0;
+  margin: 1em -1.2em -1.2em -1.2em;
+  background:#f9f9f9;
+  padding:1.5em 1em;
+  justify-content: center;
+  align-items: center;
+  color:#999;
+  text-transform:uppercase;
+  font-weight:bold;
+  white-space: nowrap;
+  border-radius:0 0 .3em .3em;    
+  position: sticky;
+  bottom: -1.2em;
+  cursor:pointer;
+  &:hover {
+    background:#2fd29a;
+    color:#fff;
+    svg path {
+      fill: #fff;
+    }
+  }
+  span {
+    font-size:1.1em;
+  }
+  svg {
+    width:1.2em;
+    margin-left:.5em;
+  }
+}
