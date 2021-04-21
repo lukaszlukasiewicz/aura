@@ -26,6 +26,9 @@ function List() {
     const productsArray = Array.from(products);
     return productsArray.map(product => JSON.parse(product));
   }
+  const getProducts = () => {
+    return parsedProducts();
+  }
 
   const render = container => {
     lists.add(container);
@@ -37,6 +40,7 @@ function List() {
     add,
     remove,
     render,
+    getProducts,
   }
 }
 

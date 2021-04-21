@@ -2,6 +2,7 @@ import habitat from 'preact-habitat';
 import App from './components/App';
 import List from './List/List.js';
 import Toaster from 'components/Toaster/Toaster'
+import AskForm from 'components/AskForm/AskForm'
 /*
 import Cart from './components/Cart/Cart';
 const cartRef = {};
@@ -39,8 +40,17 @@ _habitat.render({
 const toastContainer = document.createElement('div')
 toastContainer.classList.add('toster');
 document.body.append(toastContainer);
-const _toaster = habitat(Toaster)
-_toaster.render({
+const _toastHabitat = habitat(Toaster)
+_toastHabitat.render({
   selector:".toster",
+  clean:false,
+});
+
+const askContainer = document.createElement('div')
+askContainer.classList.add('aura-ask');
+document.body.append(askContainer);
+const _askhabitat = habitat(AskForm)
+_askhabitat.render({
+  selector:".aura-ask",
   clean:false,
 });

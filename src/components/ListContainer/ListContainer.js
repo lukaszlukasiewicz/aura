@@ -78,7 +78,13 @@ const ListContainer = props => {
             <p className={Styles['ListContainer--empty']}>Twoja lista jest pusta :(</p>
         }
         </div>
-        {products.length ? <button className={Styles.ListContainer__ask}>
+        {products.length ? <button className={Styles.ListContainer__ask} onClick={e => {
+          console.log(window.auraAsk)
+          if(window.auraAsk) {
+            setList(false);
+            window.auraAsk();
+          } 
+        }}>
           <span>Zapytaj o wybrane produkty</span> {useSVG(Mail)}
         </button>: ''}
       </div> }
