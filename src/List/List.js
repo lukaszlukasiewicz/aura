@@ -1,7 +1,8 @@
 import ListContainer from '../components/ListContainer/ListContainer';
 import {render as renderPreact} from 'preact';
 const products = new Set();
-const lists = new Set();
+const lists = new Map();
+
 
 function List() {
 
@@ -17,8 +18,8 @@ function List() {
   }
 
   const update = () => {
-    lists.forEach( (container) => {
-      renderPreact( <ListContainer products={parsedProducts()} remove={remove} />,container);
+    lists.forEach( (Component, container) => {
+      renderPreact( <Component products={parsedProducts()} remove={remove} />,container);
     });
   }
 
@@ -26,13 +27,14 @@ function List() {
     const productsArray = Array.from(products);
     return productsArray.map(product => JSON.parse(product));
   }
+
   const getProducts = () => {
     return parsedProducts();
   }
 
-  const render = container => {
-    lists.add(container);
-    const list = <ListContainer remove={remove} products={parsedProducts()} />
+  const render = (container, ListComponent = ListContainer) => {
+    lists.set(container,ListComponent);
+    const list = <ListComponent remove={remove} products={parsedProducts()} />
     renderPreact(list,container);
   }
 
@@ -40,6 +42,7 @@ function List() {
     add,
     remove,
     render,
+    products,
     getProducts,
   }
 }

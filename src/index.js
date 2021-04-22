@@ -25,6 +25,7 @@ cartBtn.forEach( btn => {
 
 const productsList = new List();
 
+window.productsList = productsList;
 const listContainers = document.querySelectorAll('.aura-list__container');
 if( listContainers ) listContainers.forEach( listContainer => productsList.render( listContainer ) )
 
@@ -49,8 +50,13 @@ _toastHabitat.render({
 const askContainer = document.createElement('div')
 askContainer.classList.add('aura-ask');
 document.body.append(askContainer);
+productsList.render( askContainer, AskForm );
+/* 
 const _askhabitat = habitat(AskForm)
 _askhabitat.render({
   selector:".aura-ask",
   clean:false,
-});
+  defaultProps: {
+    list : productsList
+  },
+}); */

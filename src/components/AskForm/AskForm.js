@@ -1,11 +1,18 @@
 import Styles from './AskForm.module.scss'
 import {Close, Mail} from "components/UI/Icons"
 import {useState, useRef, useLayoutEffect} from "preact/hooks"
+import ListItem from "components/ListItem/ListItem"
+
+const Product = props => {
+  return <div>
+    <img src={props.image} />
+  </div>
+}
 
 const AskForm = props => {
   const [visible, setVisible] = useState(false);
   const askRef = useRef();
-  
+
   useLayoutEffect(() => {
     const wrapper = askRef.current;
     if(!wrapper) return false;
@@ -27,6 +34,14 @@ const AskForm = props => {
           <button onClick={e => setVisible(false)}><Close /></button>
         </div>
       </div>
+      <div className={Styles.AskForm__productList}>
+        <h3>Wybrane produkty</h3>
+        <div className={Styles.AskForm__productListItems}>
+          {props.products.map(product => <Product {...product} />)}
+        </div>
+      </div>
+      
+        <h3>Twoje dane</h3>
         <form>
           <input type="text" placeholder="Imię i nazwisko"  />
           <input type="text" placeholder="Adrres email"  />
