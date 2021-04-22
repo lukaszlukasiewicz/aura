@@ -1,9 +1,9 @@
 import {useState, useEffect, useRef} from 'preact/hooks'
 import ListItem from 'components/ListItem/ListItem';
 import Button from "components/UI/Button";
-import Star from "assets/icons/star.svg";
+import {Star} from "components/UI/Icons";
 import Styles from './ListContainer.module.scss';
-import {Mail,Close} from "components/UI/Icons"
+import {Mail,Close} from "components/UI/Icons";
 
 const ListContainer = props => {
   const [showList, setList] = useState(false)
@@ -48,8 +48,9 @@ const ListContainer = props => {
       onClick={e => {
         setList(true);
       }}
+      className ={Styles.ListButton}
       label={<>
-        <img src={Star} style={{width:"1.2em",marginBottom:"-.15em",marginRight:".5em"}}/>
+        <Star />
         <strong style={{textTransform:'uppercase'}}>Lista ({products.length})</strong>
       </>}  
     />

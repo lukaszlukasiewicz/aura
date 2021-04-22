@@ -23,6 +23,16 @@
   }
 }
 
+.ListButton {
+  svg {
+    widtH:1.5em;
+    height:1.5em;
+    margin-top:-.5em;
+    margin-right:.5em;
+    vertical-align: middle;
+  }
+}
+
 .ListWrapper {
   position:relative;
   display:inline-block;
