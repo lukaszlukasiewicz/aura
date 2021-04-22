@@ -3,6 +3,7 @@
   height:0;
   width:100%;
   bottom:0;
+  box-sizing: border-box;
   left:0;
   z-index:999999;
   @media (max-width:30em) {
@@ -15,6 +16,7 @@
   position:absolute;
   bottom:0;
   widtH:100%;
+  box-sizing: border-box;
   max-width:30em;
   margin:0 auto;
   left:50%;
