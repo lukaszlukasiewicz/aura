@@ -70,7 +70,6 @@ const ListContainer = props => {
         }
         </div>
         {products.length ? <button className={Styles.ListContainer__ask} onClick={e => {
-          console.log(window.auraAsk)
           if(window.auraAsk) {
             setList(false);
             window.auraAsk();

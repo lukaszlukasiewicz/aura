@@ -85,6 +85,10 @@
     justify-content: center;
     lefT:0;
     top:0;
+    
+    display:grid;
+    align-content: stretch;
+    grid-template-rows: auto 1fr auto;
     > div {
       max-height:none;
       overflow:initial;
