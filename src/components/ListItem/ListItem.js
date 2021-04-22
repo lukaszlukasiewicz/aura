@@ -1,7 +1,6 @@
 import {useProductName} from "hooks/useProductName";
 import Styles from "./ListItem.module.scss"
-import Trash from "assets/icons/trash.svg";
-import {useSVG} from "hooks/useSvg";
+import {Trash} from "components/UI/Icons"
 
 const ImagePlaceholder = () => {
   return <div className={Styles.ListItem__imagePlaceholder}></div>
@@ -24,7 +23,7 @@ const ListItem = props => {
     <buton className={Styles.ListItem__remove} onClick={e => {
       setTimeout(() => remove(product), 1);    // set timout prevent list close. Removed item is not child of the list so list closes 
     }}>
-      {useSVG(Trash)}
+      <Trash />
     </buton>
   </div>
 }

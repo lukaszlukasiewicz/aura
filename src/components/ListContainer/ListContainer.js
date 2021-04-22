@@ -2,17 +2,8 @@ import {useState, useEffect, useRef} from 'preact/hooks'
 import ListItem from 'components/ListItem/ListItem';
 import Button from "components/UI/Button";
 import Star from "assets/icons/star.svg";
-import Mail from "assets/icons/mail.svg";
 import Styles from './ListContainer.module.scss';
-import {useSVG} from "hooks/useSvg";
-import Close from "assets/icons/close.svg";
-
-const CloseIcon = () => {
-  const icon = atob(Close.replace(/data:image\/svg\+xml;base64,/, ''))
-  return <div dangerouslySetInnerHTML={{
-    __html: icon
-  }} />
-}
+import {Mail,Close} from "components/UI/Icons"
 
 const ListContainer = props => {
   const [showList, setList] = useState(false)
@@ -68,7 +59,7 @@ const ListContainer = props => {
         <div className={Styles.ListContainer__header}>
           <h2>Twoja lista</h2>
           <div>
-            <button onClick={e => setList(false)}>{useSVG(Close)}<span>Zamknij</span></button>
+            <button onClick={e => setList(false)}><Close /><span>Zamknij</span></button>
           </div>
         </div>
         <div>
@@ -85,7 +76,7 @@ const ListContainer = props => {
             window.auraAsk();
           } 
         }}>
-          <span>Zapytaj o wybrane produkty</span> {useSVG(Mail)}
+          <span>Zapytaj o wybrane produkty</span> <Mail />
         </button>: ''}
       </div> }
     </div>

@@ -1,7 +1,5 @@
 import Styles from './AskForm.module.scss'
-import Close from "assets/icons/close.svg"
-import Mail from "assets/icons/mail.svg"
-import {useSVG} from "hooks/useSVG"
+import {Close, Mail} from "components/UI/Icons"
 import {useState, useRef, useLayoutEffect} from "preact/hooks"
 
 const AskForm = props => {
@@ -26,7 +24,7 @@ const AskForm = props => {
       <div className={Styles.AskForm__header}>
         <h2>Wyślij Zapytanie</h2>
         <div>
-          <button onClick={e => setVisible(false)}>{useSVG(Close)}</button>
+          <button onClick={e => setVisible(false)}><Close /></button>
         </div>
       </div>
         <form>
@@ -35,7 +33,7 @@ const AskForm = props => {
           <input type="text" placeholder="Telefon"  />
           <textarea rows="10" placeholder="Twoja wiadomość"></textarea>
           <div className={Styles.AskForm__submit}>
-            <button>Wyślij {useSVG(Mail)}</button>
+            <button>Wyślij <Mail/></button>
           </div>
         </form>
     </div>

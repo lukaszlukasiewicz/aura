@@ -1,7 +1,6 @@
 import Styles from "./Toaster.module.scss";
 import {useState, useRef, useEffect} from "preact/hooks"
-import Close from "assets/icons/close.svg";
-import {useSVG} from "hooks/useSvg";
+import {Close} from "components/UI/Icons"
 
 const Toast = props => {
   const toastRef = useRef();
@@ -25,7 +24,7 @@ const Toast = props => {
   return <div ref={toastRef} className={`${Styles.Toast} ${props.toast.type == "error" ? Styles.Toast__error: ''} ${props.toast.timeout ? Styles['Toast--visible'] : ''}`} onClick={removeToast}>
     <div>{props.toast.content}</div>
     <div>
-      {useSVG(Close)}
+      <Close />
     </div>
   </div>
 }
