@@ -13,7 +13,7 @@ to debug current state of product add "configurator-debug" prop to the container
 ```
   <div id="aura-configurator" data-configurator-debug></div>	
 ```
-To set initial configuration pass configuration object to the window.AuraConfiguratorInitialState prop. The object has to have property material set to either "wood", "metal" or "composite".
+To set initial configuration pass configuration object to the window.AuraConfiguratorInitialState prop.
 ```
   <script>
      window.AuraConfiguratorInitialState = {

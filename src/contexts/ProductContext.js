@@ -28,7 +28,8 @@ const validateState = (state) => {
   return validState;
 }
 
-const initialProductState = validateState(window.AuraConfiguratorInitialState || {material:"metal"});
+const userState = Object.assign( {material:"metal",},window.AuraConfiguratorInitialState)
+const initialProductState = validateState(userState);
 
 const reducer = (product,updatedProps) => {
   const state = Object.assign({},product,updatedProps);
