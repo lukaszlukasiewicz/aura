@@ -65,9 +65,9 @@ const ProductView  = props => {
   return (
     <div className={`${Styles.ProductView} ${props.className}`}>
       <div className={`${Styles.loading} ${loading ? Styles.isLoading : null}`}><span></span><span></span></div>
-      <pre className={Styles.DebugView}>
+      {props.debug  ? <pre className={Styles.DebugView}>
         {JSON.stringify(product,undefined,4)}
-      </pre>
+      </pre> : ''}
       <canvas ref={refFn} width="1200" height="1200" />
     </div>
   )

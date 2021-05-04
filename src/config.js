@@ -43,7 +43,7 @@ const metal = {
   }, // overwrite material prop
   cornerColor : {
     expression : /^(silver|graphite|RAL\s(?:\d{4}))$/,
-    default: "silver",
+    default: "graphite",
   }
 };
 

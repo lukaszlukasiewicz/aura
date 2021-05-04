@@ -17,7 +17,7 @@ import AddToList from "components/UI/AddToList"
 const App = props => {
 	return (<ProductContextWrapper><div className={Styles.App} id="app">
 		<div className={Styles.viewWraprer}>
-			<ProductView />
+			<ProductView debug={props.debug} />
 		</div>
 		<Sidebar>
 			<MaterialPanel />
