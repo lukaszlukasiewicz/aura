@@ -28,11 +28,11 @@ const wood = {
   },
   woodType: {
     expression: new RegExp(`^(${woodTypes.join("|")})$`),
-    default: 'okume',
+    default: 'olcha',
   },
   woodColor : {
     expression:  new RegExp(`^(${woodColors.join("|")})$`),
-    default: 'natural',
+    default: 'tvt-5060',
   },
 };
 
@@ -44,7 +44,15 @@ const metal = {
   cornerColor : {
     expression : /^(silver|graphite|RAL\s(?:\d{4}))$/,
     default: "graphite",
-  }
+  },
+  woodType: {
+    expression: new RegExp(`^(${woodTypes.join("|")})$`),
+    default: 'okume',
+  },
+  woodColor : {
+    expression:  new RegExp(`^(${woodColors.join("|")})$`),
+    default: 'natural',
+  },
 };
 
 const composite = {
@@ -58,12 +66,12 @@ const composite = {
   },
   color: {
     expression: /^RAL\s(?:\d{4})$/,
-    default: "RAL 4010"
+    default: "RAL 9023"
   },
   insert : {
     values : ["Lamela"],
     empty : true,
-    default: false,
+    default: "Lamela",
   },
 }
 
