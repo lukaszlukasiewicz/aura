@@ -4,15 +4,6 @@ import configs from "config";
 
 window.auraConfiguratorUrl  = document.currentScript.src.replace("auraConfigurator.js","");
 
-const cache = {
-  woodColor:  {
-    wood: "okume",
-    color:"natural",
-  },
-  compositeColor: "RAL 1000",
-  cornerColor: "wood",
-  conrenrType: "round",
-}
 
 const validateProductProp = (value,propConfig) => {
   if ( !propConfig ) return false;
@@ -37,7 +28,7 @@ const validateState = (state) => {
   return validState;
 }
 
-const initialProductState = validateState({material:"wood"});
+const initialProductState = validateState(window.AuraConfiguratorInitialState || {material:"metal"});
 
 const reducer = (product,updatedProps) => {
   const state = Object.assign({},product,updatedProps);
