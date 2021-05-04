@@ -24,7 +24,7 @@ const wood = {
   insert : {
     values : ["Lechuza"],
     empty : true,
-    default: false,
+    default: "Lechuza",
   },
   woodType: {
     expression: new RegExp(`^(${woodTypes.join("|")})$`),
